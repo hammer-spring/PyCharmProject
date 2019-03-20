@@ -100,9 +100,9 @@
     - 在成员前面加两个下划线即可
     
             class Person():
-            #name是共有的成员
+            name是共有的成员
             name = "liuying"
-            #__age就是私有成员
+            __age就是私有成员
             __age = 18 
         p = Person()
         print(p.name)
@@ -124,14 +124,14 @@
     - 用于继承的类，叫子类，也叫派生类
     - 继承与被继承一定存在一个 is-a 关系
 -语法：
-        - 在python中，任何类都有一个共同的父类叫object
+
         class Person():
             name = "NoName"
             age = 0
             def sleep(self):
                 print("Sleeping......")
                
-        -父类写在括号内
+        父类写在括号内
         class Teach(Person):
             pass
         t = Teacher():
