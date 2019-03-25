@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlretrieve
 dowmload_links = []
-path = 'C://Users/LP/Desktop/photo/'
+path = 'C://Users/hammer/Desktop/photo/'
 url = 'http://www.mzitu.com/'
 res = requests.get(url)
 soup = BeautifulSoup(res.text,'lxml')
