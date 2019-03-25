@@ -38,7 +38,7 @@ if __name__ == '__main__':
     for url in urls:
         get_info(url)
     for info_list in info_lists:
-         f = open('C:/Users/hammer/Desktop/qiushi.text','a+')
+         f = open('C:/Users/hammer/Desktop/qiushi.txt','a+')
          try:
              f.write(info_list['id']+'\n')
              f.write(info_list['level'] + '\n')
