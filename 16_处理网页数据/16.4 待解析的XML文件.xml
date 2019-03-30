@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<collection shelf="New Arrivals">
+<book title="Python语言编程案例课堂">
+   <type>computer</type>
+   <author>刘玉红</author>
+   <year>2017年</year>
+   <price>59元</price>
+   <description>该书是Python语言入门必读的经典著作</description>
+</book>
+<book title="MySQL数据库案例课堂">
+   <type>computer</type>
+   <author>郭广新</author>
+   <year>2016年</year>
+   <price>69元</price>
+   <description>该书是MySQL数据库入门必读的经典著作</description>
+</book>
+</collection>

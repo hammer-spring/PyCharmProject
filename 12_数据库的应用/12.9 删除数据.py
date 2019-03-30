@@ -1,12 +1,12 @@
 import pymysql
 
 # 打开数据库连接
-db = pymysql.connect("localhost","root","","person" )
+db = pymysql.connect("localhost","root","4303299","person" )
 
 # 使用cursor()方法获取操作游标 
 cursor = db.cursor()
 # SQL 更新语句
-sql = "UPDATE student SET age=age-1"
+sql = " DELETE student WHERE sex='%s'" % ('女')
 try:
    # 执行SQL语句
    cursor.execute(sql)
@@ -17,3 +17,4 @@ except:
    db.rollback()
 
 # 关闭数据库连接
+db.close()

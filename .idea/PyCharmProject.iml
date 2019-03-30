@@ -2,6 +2,8 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/项目开发实战/01_开发学生信息管理系统/Student" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/项目开发实战/03_开发网络数据分析系统" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (PyCharmProject) (2)" jdkType="Python SDK" />

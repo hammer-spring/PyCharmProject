@@ -1,14 +1,14 @@
 import pymysql
 
 # 打开数据库连接
-db = pymysql.connect("localhost","root","","person" )
+db = pymysql.connect("localhost","root","4303299","person" )
 
 # 使用cursor()方法获取操作游标 
 cursor = db.cursor()
 sql = "INSERT INTO student (id,name,age,sex)VALUES ('%d', '%s', '%d', '%s' )" % (1, '张芳', 26, '女')
 try:
    #执行插入数据语句
-cursor.execute(sql)
+   cursor.execute(sql)
    # 提交到数据库执行
    db.commit()
 except:
