@@ -2,7 +2,7 @@ from tkinter import *
 win = Tk()
 
 #设置图片文件的路径
-path = "D:\\PyCharm\\PyCharmProject\\6_Tkinter\\"
+path = "D:\\PyCharm\\PyCharmProject\\06_Tkinter\\"
 img = []
 #将9张图片放入一个列表中
 for i in range(9):
