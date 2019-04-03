@@ -1,5 +1,5 @@
 from numpy import *
-
+#SNMO算法中的辅助函数
 def loadDataSet(fileName):
 
     """
@@ -51,7 +51,7 @@ def clipAlpha(aj, H, L):
         aj = L
     return aj
 
-
+'''
 def smoSimple(dataMatIn, classLabels, C, toler, maxIter):
     dataMatrix = mat(dataMatIn)
     labelMat = mat(classLabels).transpose()
@@ -122,7 +122,7 @@ def smoSimple(dataMatIn, classLabels, C, toler, maxIter):
         print("iteration number: %d" % iter)
     return b, alphas
 
-
+'''
 # begin 完整版Platt SMO支持函数
 class optStruct:
     def __init__(self, dataMatIn, classLabels, C, toler):
@@ -206,7 +206,6 @@ def updateEk(oS, k):
     Ek = calcEk(oS, k)
     oS.eCache[k] = [1, Ek]
 # end 完整版Platt SMO支持函数
-
 # 完整Platt SMO优化例程
 def innerL(i, oS):
     """innerL
@@ -223,14 +222,13 @@ def innerL(i, oS):
     Ei = calcEk(oS, i)
     # 约束条件 (KKT条件是解决最优化问题的时用到的一种方法。我们这里提到的最优化问题通常是指对于给定的某一函数，求其在指定作用域上的全局最小值)
     # 0<=alphas[i]<=C，但由于0和C是边界值，我们无法进行优化，因为需要增加一个alphas和降低一个alphas。
-    # 表示发生错误的概率：labelMat[i]*Ei 如果超出了 toler， 才需要优化。至于正负号，我们考虑绝对值就对了。
+    # 表示发生错误的概率：labelMat[i]*Ei 如果超出了 toler， 才需要优化。至于正负号，考虑绝对值就对了。
     if ((oS.labelMat[i] * Ei < -oS.tol) and (oS.alphas[i] < oS.C)) or (
             (oS.labelMat[i] * Ei > oS.tol) and (oS.alphas[i] > 0)):
         # 选择最大的误差对应的j进行优化。效果更明显
         j, Ej = selectJ(i, oS, Ei)  #这里在选择j处进行了优化
         alphaIold = oS.alphas[i].copy()
         alphaJold = oS.alphas[j].copy()
-
         # L和H用于将alphas[j]调整到0-C之间。如果L==H，就不做任何改变，直接return 0
         if (oS.labelMat[i] != oS.labelMat[j]):
             L = max(0, oS.alphas[j] - oS.alphas[i])
@@ -309,7 +307,8 @@ def smoP(dataMatIn, classLabels, C, toler, maxIter, kTup=('lin', 0)):
         if entireSet:
             for i in range(oS.m):   # 在数据集上遍历所有的alpha
                 alphaPairsChanged += innerL(i, oS)   # 是否存在alpha对，存在就+1
-            print("fullSet, iter: %d i %d, pairs changed %d" % (iter, i, alphaPairsChanged))
+                print("是否存在alpha对，存在就+1")
+                print("全部集合, iter: %d i: %d, 成对变化 %d" % (iter, i, alphaPairsChanged))
             iter += 1
         # 对已存在 alpha对，选出非边界的alpha值，进行优化。
         else:
@@ -317,7 +316,8 @@ def smoP(dataMatIn, classLabels, C, toler, maxIter, kTup=('lin', 0)):
             nonBoundIs = nonzero((oS.alphas.A > 0) * (oS.alphas.A < C))[0]
             for i in nonBoundIs:
                 alphaPairsChanged += innerL(i, oS)
-                print("non-bound, iter: %d i %d, pairs changed %d" % (iter, i, alphaPairsChanged))
+                print("遍历所有的非边界alpha值，也就是不在边界0或C上的值。")
+                print("无约束的, iter: %d i: %d, 成对变化 %d" % (iter, i, alphaPairsChanged))
             iter += 1
 
         # 如果找到alpha对，就优化非边界alpha值，否则，就重新进行寻找，如果寻找一遍 遍历所有的行还是没找到，就退出循环。
@@ -325,7 +325,8 @@ def smoP(dataMatIn, classLabels, C, toler, maxIter, kTup=('lin', 0)):
             entireSet = False
         elif (alphaPairsChanged == 0):
             entireSet = True
-        print("iteration number: %d" % iter)
+        print("如果找到alpha对，就优化非边界alpha值，否则，就重新进行寻找，如果寻找一遍 遍历所有的行还是没找到，就退出循环。")
+        print("迭代次数: %d\n" % iter)
     return oS.b, oS.alphas
 
 
@@ -423,7 +424,7 @@ def img2vector(filename):
             returnVect[0, 32 * i + j] = int(lineStr[j])
     return returnVect
 
-
+#基于SVM的手写数字识别
 def loadImages(dirName):
     from os import listdir
     hwLabels = []
@@ -450,7 +451,7 @@ def loadImages(dirName):
     return trainingMat, hwLabels
 
 
-def testDigits(kTup=('rbf', 10)):
+def testDigits(kTup=('rbf', 50)):
     dataArr, labelArr = loadImages('trainingDigits')
     b, alphas = smoP(dataArr, labelArr, 200, 0.0001, 10000, kTup)
     datMat = mat(dataArr)
@@ -458,14 +459,15 @@ def testDigits(kTup=('rbf', 10)):
     svInd = nonzero(alphas.A > 0)[0]
     sVs = datMat[svInd]
     labelSV = labelMat[svInd]
-    print("there are %d Support Vector" % shape(sVs)[0])
+    print("一共有 %d 个支持向量" % shape(sVs)[0])
     m, n = shape(datMat)
     errorCount = 0
     for i in range(m):
         kernelEval = kernelTrans(sVs, datMat[i, :], kTup)
         predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b
-        if sign(predict) != sign(labelArr[i]): errorCount += 1
-    print("the training error rate is: %f" % (float(errorCount) / m))
+        if sign(predict) != sign(labelArr[i]):
+            errorCount += 1
+    print("训练误差率为: %f" % (float(errorCount) / m))
     dataArr, labelArr = loadImages('testDigits')
     errorCount = 0
     datMat = mat(dataArr)
@@ -475,7 +477,8 @@ def testDigits(kTup=('rbf', 10)):
         kernelEval = kernelTrans(sVs, datMat[i, :], kTup)
         predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b
         if sign(predict) != sign(labelArr[i]): errorCount += 1
-    print("the test error rate is :%f" % (float(errorCount) / m))
-
+    print("测试错误率为 :%f" % (float(errorCount) / m))
+print("L和H用于将alphas[j]调整到0-C之间。如果L==H，就不做任何改变，直接return 0。\n输出'L==H'")
+print("检查alpha[j]是否只是轻微的改变，如果是的话，就退出for循环。\n输出'j not moving enough'\n")
 print(testDigits())
 
