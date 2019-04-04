@@ -459,6 +459,7 @@ def testDigits(kTup=('rbf', 50)):
     svInd = nonzero(alphas.A > 0)[0]
     sVs = datMat[svInd]
     labelSV = labelMat[svInd]
+    print('RBF,50')
     print("一共有 %d 个支持向量" % shape(sVs)[0])
     m, n = shape(datMat)
     errorCount = 0
