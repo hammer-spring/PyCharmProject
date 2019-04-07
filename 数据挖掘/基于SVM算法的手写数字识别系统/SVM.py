@@ -479,7 +479,10 @@ def testDigits(kTup=('rbf', 50)):
         predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b
         if sign(predict) != sign(labelArr[i]): errorCount += 1
     print("测试错误率为 :%f" % (float(errorCount) / m))
-print("L和H用于将alphas[j]调整到0-C之间。如果L==H，就不做任何改变，直接return 0。\n输出'L==H'")
-print("检查alpha[j]是否只是轻微的改变，如果是的话，就退出for循环。\n输出'j not moving enough'\n")
-print(testDigits())
+
+if __name__ == '__main__':
+
+    print("L和H用于将alphas[j]调整到0-C之间。如果L==H，就不做任何改变，直接return 0。\n输出'L==H'")
+    print("检查alpha[j]是否只是轻微的改变，如果是的话，就退出for循环。\n输出'j not moving enough'\n")
+    print(testDigits())
 
