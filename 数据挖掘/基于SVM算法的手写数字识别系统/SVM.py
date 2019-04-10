@@ -1,3 +1,7 @@
+'''
+支持向量机（Support Vector Machine, SVM）是一类按监督学习方式对数据进行二元分类的广义线性分类器，
+其决策边界是对学习样本求解的最大边距超平面。
+'''
 from numpy import *
 #SNMO算法中的辅助函数
 def loadDataSet(fileName):
