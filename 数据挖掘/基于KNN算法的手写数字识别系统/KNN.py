@@ -117,7 +117,7 @@ def handwritingClassTest():
         vectorUnderTest = img2vector('digits/testDigits/%s' % fileNameStr)
 
         # 对数据文件进行分类
-        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, 3)
+        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, 9)
 
         # 打印 K 近邻算法分类结果和真实的分类
         print("测试样本 %d, 分类器预测: %d, 真实类别: %d" %
@@ -131,4 +131,6 @@ def handwritingClassTest():
     print("\n错误分类计数: %d" % errorCount)
     print("\n错误分类比例: %f" % (errorCount/float(mTest)))
 
-print(handwritingClassTest())
+if __name__ == '__main__':
+
+        print(handwritingClassTest())
