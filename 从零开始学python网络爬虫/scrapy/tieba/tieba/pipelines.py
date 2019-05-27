@@ -11,7 +11,7 @@ import pymongo
 class TiebaPipeline(object):
     def __init__(self):
         client = pymongo.MongoClient('localhost', 27017)
-        test = client['test']
+        test = client['mydb']
         tieba = test['tieba']
         self.post = tieba
 

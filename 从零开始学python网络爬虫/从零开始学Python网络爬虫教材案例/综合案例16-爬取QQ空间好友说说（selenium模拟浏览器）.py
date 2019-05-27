@@ -5,7 +5,7 @@ import pymongo
 
 client = pymongo.MongoClient('localhost', 27017)
 mydb = client['mydb']
-qq_shuo = mydb['qq_shuo3']
+qq_shuo = mydb['qq_shuo4']
 
 driver = webdriver.Chrome()
 driver.maximize_window()
@@ -22,9 +22,9 @@ def get_info(qq):
         driver.switch_to.frame('login_frame')
         driver.find_element_by_id('switcher_plogin').click()
         driver.find_element_by_id('u').clear()
-        driver.find_element_by_id('u').send_keys('448832559')
+        driver.find_element_by_id('u').send_keys('1149449799')
         driver.find_element_by_id('p').clear()
-        driver.find_element_by_id('p').send_keys('4303299VR!')
+        driver.find_element_by_id('p').send_keys('SSJNLZK1998')
         driver.find_element_by_id('login_button').click()
         time.sleep(3)
     driver.implicitly_wait(3)
@@ -49,7 +49,7 @@ def get_info(qq):
 
 if __name__ == '__main__':
     qq_lists = []
-    fp = open('F:\迅雷下载\QQmail.csv',encoding="utf-8")
+    fp = open('F:\迅雷下载/QQmail.csv',encoding="utf-8")
     reader = csv.DictReader(fp)
     for row in reader:
         qq_lists.append(row['电子邮件'].split('@')[0])

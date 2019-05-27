@@ -8,9 +8,12 @@
 
 from scrapy.item import Item,Field
 
-class TiebaItem(Item):
-    question = Field()
-    favour = Field()
+class JianshuitItem(Item):
     user = Field()
-    user_info = Field()
-    content = Field()
+    time = Field()
+    title = Field()
+    view = Field()
+    comment = Field()
+    like = Field()
+    gain = Field()
+    pass

@@ -2,7 +2,7 @@ import scrapy
 from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
 from scrapy.http import Request
-from tieba.items import TiebaItem
+from ..items import TiebaItem
 
 class tieba(CrawlSpider):
     name = 'tieba'
