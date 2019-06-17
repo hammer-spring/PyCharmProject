@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/项目开发实战/01_开发学生信息管理系统/Student" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/项目开发实战/03_开发网络数据分析系统" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/从零开始学python网络爬虫/获取拉勾网并展示" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/数据挖掘实训/实验一/2_实现使用决策树预测隐形眼镜类型" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/从零开始学python网络爬虫/获取拉勾网并展示/utils" />
     </content>

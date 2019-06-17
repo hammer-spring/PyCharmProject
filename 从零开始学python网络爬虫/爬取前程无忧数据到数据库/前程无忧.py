@@ -14,9 +14,9 @@ for i in range(1,51):
     res=requests.get(url)
     res.encoding='gbk'
     #print(res.encoding)
-    soup=BeautifulSoup(res.text,'html.parser')
+    soup=BeautifulSoup(res.text,'html.parser')#对返回的结果进行解析
     #print(soup)
-    posts=soup.select('#resultList > div > p > span > a')
+    posts=soup.select('#resultList > div > p > span > a')#selector方法
     #print(posts)
     post1=list(map(lambda x:x.text.strip(),posts))
     #print(post1)#获取职位名称
@@ -40,7 +40,7 @@ print(total)
 import pymongo
 client = pymongo.MongoClient('localhost',27017) #'192.168.0.65',27777
 db = client.cast
-test = db.qianchengwuyou5
+test = db.qianchengwuyou7
 
 for i in total:
     test.save(i)#存储数据

@@ -9,9 +9,9 @@
 from scrapy.item import Item,Field
 
 class TiebaItem(Item):
-    question = Field()
-    favour = Field()
-    user = Field()
-    user_info = Field()
-    content = Field()
+    posts = Field()
+    comps = Field()
+    areas = Field()
+    moneys = Field()
+    times = Field()
     pass
